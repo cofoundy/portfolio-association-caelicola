@@ -1,0 +1,100 @@
+---
+import Hero from "../components/Hero.astro";
+import Mission from "../components/Mission.astro";
+import DanzaInfinita from "../components/DanzaInfinita.astro";
+import Contact from "../components/Contact.astro";
+import { siteConfig } from "../config";
+import "../styles/global.css";
+---
+
+<html lang="fr" data-lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={siteConfig.description} />
+
+    <!-- OG -->
+    <meta property="og:title" content={`${siteConfig.name} — ${siteConfig.title}`} />
+    <meta property="og:description" content={siteConfig.description} />
+    <meta property="og:type" content="website" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>{siteConfig.name} — {siteConfig.title}</title>
+  </head>
+  <body class="film-grain">
+    <main>
+      <Hero />
+      <Mission />
+      <DanzaInfinita />
+    </main>
+    <Contact />
+
+    <!-- Language Toggle Script -->
+    <script>
+      const html = document.documentElement;
+      const btnFr = document.getElementById('btn-fr');
+      const btnEs = document.getElementById('btn-es');
+
+      function setLang(lang: string) {
+        html.setAttribute('data-lang', lang);
+        html.setAttribute('lang', lang);
+
+        if (lang === 'fr') {
+          btnFr?.classList.add('active');
+          btnFr?.setAttribute('style', 'border-color: var(--c-accent); color: var(--c-accent);');
+          btnEs?.classList.remove('active');
+          btnEs?.setAttribute('style', 'border-color: var(--c-border); color: var(--c-text-muted);');
+        } else {
+          btnEs?.classList.add('active');
+          btnEs?.setAttribute('style', 'border-color: var(--c-accent); color: var(--c-accent);');
+          btnFr?.classList.remove('active');
+          btnFr?.setAttribute('style', 'border-color: var(--c-border); color: var(--c-text-muted);');
+        }
+
+        // Update meta description
+        const meta = document.querySelector('meta[name="description"]');
+        if (meta) {
+          meta.setAttribute('content', lang === 'fr'
+            ? "Association Caelicola — Créer, produire et diffuser des œuvres audiovisuelles, théâtrales et littéraires. Basée en Suisse."
+            : "Asociación Caelicola — Crear, producir y difundir obras audiovisuales, teatrales y literarias. Con sede en Suiza."
+          );
+        }
+      }
+
+      btnFr?.addEventListener('click', () => setLang('fr'));
+      btnEs?.addEventListener('click', () => setLang('es'));
+    </script>
+
+    <!-- Scroll Reveal Script -->
+    <script>
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -8% 0px',
+        threshold: 0.1
+      };
+
+      const revealOnScroll = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(revealOnScroll, observerOptions);
+      document.querySelectorAll('.reveal, .reveal-scale').forEach(el => {
+        observer.observe(el);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,247 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════
+   CAELICOLA — Cinematic Dark Theme
+   "Habitante del cielo" — nocturnal, golden, theatrical
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  --c-bg: #0a0d14;
+  --c-bg-alt: #111622;
+  --c-surface: #1a1f2e;
+  --c-text: #e8e4de;
+  --c-text-muted: #8b8e96;
+  --c-accent: #c9a84c;
+  --c-accent-light: #dfc06a;
+  --c-border: #2a2f3d;
+
+  --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --duration-slow: 800ms;
+  --duration-normal: 500ms;
+  --duration-fast: 250ms;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+  background-color: var(--c-bg);
+  color: var(--c-text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', 'Cormorant', serif;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BILINGUAL TOGGLE
+   ═══════════════════════════════════════════════════════════ */
+
+[data-lang="fr"] .lang-es { display: none; }
+[data-lang="es"] .lang-fr { display: none; }
+
+/* ═══════════════════════════════════════════════════════════
+   CINEMATIC TEXT REVEAL — letter-by-letter entrance
+   ═══════════════════════════════════════════════════════════ */
+
+@keyframes letterReveal {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.letter-reveal span {
+  display: inline-block;
+  opacity: 0;
+  animation: letterReveal 0.4s var(--ease-out) forwards;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HERO ENTRANCE
+   ═══════════════════════════════════════════════════════════ */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes expandLine {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.hero-name {
+  animation: fadeIn 1.2s var(--ease-smooth) 0.3s both;
+}
+
+.hero-tagline {
+  animation: fadeUp 0.8s var(--ease-out) 0.8s both;
+}
+
+.hero-subtitle {
+  animation: fadeUp 0.8s var(--ease-out) 1.0s both;
+}
+
+.hero-divider {
+  animation: expandLine 1s var(--ease-out) 1.2s both;
+}
+
+.hero-scroll {
+  animation: fadeIn 0.6s var(--ease-out) 1.8s both;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SCROLL REVEAL — Cinematic dissolve
+   ═══════════════════════════════════════════════════════════ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--duration-slow) var(--ease-out),
+              transform var(--duration-slow) var(--ease-out);
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity var(--duration-slow) var(--ease-smooth),
+              transform var(--duration-slow) var(--ease-smooth);
+}
+
+.reveal-scale.revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.stagger-1 { transition-delay: 100ms; }
+.stagger-2 { transition-delay: 200ms; }
+.stagger-3 { transition-delay: 300ms; }
+.stagger-4 { transition-delay: 400ms; }
+.stagger-5 { transition-delay: 500ms; }
+.stagger-6 { transition-delay: 600ms; }
+.stagger-7 { transition-delay: 700ms; }
+
+/* ═══════════════════════════════════════════════════════════
+   FILM GRAIN OVERLAY
+   ═══════════════════════════════════════════════════════════ */
+
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, 5%); }
+  30% { transform: translate(7%, -25%); }
+  40% { transform: translate(-5%, 25%); }
+  50% { transform: translate(-15%, 10%); }
+  60% { transform: translate(15%, 0%); }
+  70% { transform: translate(0%, 15%); }
+  80% { transform: translate(3%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+}
+
+.film-grain::after {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  animation: grain 8s steps(10) infinite;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.3;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LETTERBOX BARS
+   ═══════════════════════════════════════════════════════════ */
+
+.letterbox {
+  position: relative;
+}
+
+.letterbox::before,
+.letterbox::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 12%;
+  background: var(--c-bg);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.letterbox::before { top: 0; }
+.letterbox::after { bottom: 0; }
+
+/* ═══════════════════════════════════════════════════════════
+   DISCIPLINE ICON HOVER
+   ═══════════════════════════════════════════════════════════ */
+
+.discipline-item {
+  transition: transform var(--duration-fast) var(--ease-out),
+              color var(--duration-fast) var(--ease-out);
+}
+
+.discipline-item:hover {
+  transform: translateX(4px);
+  color: var(--c-accent);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LANG TOGGLE
+   ═══════════════════════════════════════════════════════════ */
+
+.lang-btn {
+  transition: color var(--duration-fast) var(--ease-out),
+              border-color var(--duration-fast) var(--ease-out);
+}
+
+.lang-btn.active {
+  color: var(--c-accent);
+  border-color: var(--c-accent);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SEPARATOR
+   ═══════════════════════════════════════════════════════════ */
+
+.gold-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--c-accent), transparent);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ACCESSIBILITY
+   ═══════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .film-grain::after { display: none; }
+}

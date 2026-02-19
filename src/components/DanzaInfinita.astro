@@ -1,0 +1,85 @@
+---
+import { siteConfig } from "../config";
+const { project } = siteConfig;
+---
+
+<section id="project" class="px-6 py-24 md:py-32" style="background: var(--c-bg);">
+  <div class="max-w-4xl mx-auto">
+
+    <!-- Section label -->
+    <div class="reveal text-center mb-6">
+      <p class="text-xs tracking-[0.3em] uppercase" style="color: var(--c-accent);">
+        <span class="lang-fr">Projet actuel</span>
+        <span class="lang-es">Proyecto actual</span>
+      </p>
+    </div>
+
+    <!-- Film title -->
+    <div class="reveal stagger-1 text-center mb-12">
+      <h2 class="text-3xl sm:text-4xl md:text-6xl tracking-[0.15em] uppercase" style="font-family: 'Cormorant Garamond', serif; color: var(--c-text); font-weight: 300;">
+        {project.title}
+      </h2>
+      <p class="mt-3 text-sm tracking-[0.1em]" style="color: var(--c-text-muted);">
+        <span class="lang-fr">{project.type.fr}</span>
+        <span class="lang-es">{project.type.es}</span>
+      </p>
+    </div>
+
+    <!-- Cinematic frame (letterbox) -->
+    <div class="reveal-scale stagger-2 letterbox relative mx-auto mb-16 overflow-hidden rounded" style="aspect-ratio: 21/9; background: var(--c-surface);">
+      <!-- Placeholder visual — abstract cinematic gradient -->
+      <div class="absolute inset-0 flex items-center justify-center" style="background: linear-gradient(135deg, #0a0d14 0%, #1a1f2e 40%, #2a2520 70%, #0a0d14 100%);">
+        <div class="text-center z-10 relative">
+          <p class="text-5xl sm:text-7xl md:text-8xl tracking-[0.2em] opacity-10" style="font-family: 'Cormorant Garamond', serif; color: var(--c-accent);">
+            ∞
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Synopsis -->
+    <div class="reveal stagger-3 max-w-2xl mx-auto text-center mb-14">
+      <p class="text-lg md:text-xl leading-relaxed italic" style="font-family: 'Cormorant Garamond', serif; color: var(--c-text); line-height: 1.8;">
+        <span class="lang-fr">{project.synopsis.fr}</span>
+        <span class="lang-es">{project.synopsis.es}</span>
+      </p>
+    </div>
+
+    <!-- Stats pills -->
+    <div class="reveal stagger-4 flex flex-wrap justify-center gap-4 sm:gap-8 mb-14">
+      <div class="px-5 py-3 rounded-sm border text-center" style="border-color: var(--c-border); background: var(--c-bg-alt);">
+        <p class="text-2xl md:text-3xl" style="font-family: 'Cormorant Garamond', serif; color: var(--c-accent);">9</p>
+        <p class="text-xs tracking-[0.15em] uppercase mt-1" style="color: var(--c-text-muted);">
+          <span class="lang-fr">ans</span>
+          <span class="lang-es">años</span>
+        </p>
+      </div>
+      <div class="px-5 py-3 rounded-sm border text-center" style="border-color: var(--c-border); background: var(--c-bg-alt);">
+        <p class="text-xs tracking-[0.15em] uppercase" style="color: var(--c-text-muted);">
+          <span class="lang-fr">Statut</span>
+          <span class="lang-es">Estado</span>
+        </p>
+        <p class="text-sm mt-1 tracking-wide" style="color: var(--c-accent);">
+          <span class="lang-fr">{project.status.fr}</span>
+          <span class="lang-es">{project.status.es}</span>
+        </p>
+      </div>
+      <div class="px-5 py-3 rounded-sm border text-center" style="border-color: var(--c-border); background: var(--c-bg-alt);">
+        <p class="text-xs tracking-[0.15em] uppercase" style="color: var(--c-text-muted);">
+          <span class="lang-fr">Réalisatrice</span>
+          <span class="lang-es">Directora</span>
+        </p>
+        <p class="text-sm mt-1 tracking-wide" style="color: var(--c-text);">{project.director}</p>
+      </div>
+    </div>
+
+    <!-- Role description -->
+    <div class="reveal stagger-5 max-w-xl mx-auto text-center">
+      <p class="text-sm leading-7" style="color: var(--c-text-muted);">
+        <span class="lang-fr">{project.role.fr}</span>
+        <span class="lang-es">{project.role.es}</span>
+      </p>
+    </div>
+
+  </div>
+</section>

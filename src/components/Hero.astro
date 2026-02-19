@@ -1,0 +1,48 @@
+---
+import { siteConfig } from "../config";
+---
+
+<section class="relative min-h-screen flex flex-col items-center justify-center px-6 py-20">
+  <!-- Logo placeholder -->
+  <div class="hero-name mb-6">
+    <div class="w-20 h-20 mx-auto mb-8 rounded-full border border-[var(--c-accent)]/30 flex items-center justify-center">
+      <span class="text-[var(--c-accent)] text-2xl font-light tracking-widest" style="font-family: 'Cormorant Garamond', serif;">C</span>
+    </div>
+  </div>
+
+  <!-- Name -->
+  <h1 class="hero-name text-4xl sm:text-5xl md:text-7xl lg:text-8xl tracking-[0.2em] sm:tracking-[0.3em] text-center uppercase" style="font-family: 'Cormorant Garamond', serif; font-weight: 300; color: var(--c-text);">
+    Caelicola
+  </h1>
+
+  <!-- Tagline bilingual -->
+  <p class="hero-tagline mt-6 text-base sm:text-lg tracking-[0.15em] text-center" style="color: var(--c-accent);">
+    <span class="lang-fr">{siteConfig.tagline.fr}</span>
+    <span class="lang-es">{siteConfig.tagline.es}</span>
+  </p>
+
+  <!-- Divider -->
+  <div class="hero-divider w-16 mx-auto mt-8" style="height: 1px; background: var(--c-accent);"></div>
+
+  <!-- Subtitle -->
+  <p class="hero-subtitle mt-6 text-sm tracking-[0.1em] text-center" style="color: var(--c-text-muted);">
+    <span class="lang-fr">{siteConfig.subtitle.fr}</span>
+    <span class="lang-es">{siteConfig.subtitle.es}</span>
+  </p>
+
+  <!-- Language Toggle -->
+  <div class="hero-scroll mt-12 flex items-center gap-4">
+    <button id="btn-fr" class="lang-btn active text-xs tracking-[0.15em] uppercase px-3 py-1 border rounded-full cursor-pointer" style="border-color: var(--c-accent); color: var(--c-accent);">
+      FR
+    </button>
+    <span style="color: var(--c-border);">·</span>
+    <button id="btn-es" class="lang-btn text-xs tracking-[0.15em] uppercase px-3 py-1 border rounded-full cursor-pointer" style="border-color: var(--c-border); color: var(--c-text-muted);">
+      ES
+    </button>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="hero-scroll absolute bottom-8 left-1/2 -translate-x-1/2">
+    <div class="w-px h-12 mx-auto" style="background: linear-gradient(to bottom, var(--c-accent), transparent);"></div>
+  </div>
+</section>
