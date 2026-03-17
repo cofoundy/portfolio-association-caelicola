@@ -6,14 +6,14 @@
    ═══════════════════════════════════════════════════════════ */
 
 :root {
-  --c-bg: #0a0d14;
-  --c-bg-alt: #111622;
-  --c-surface: #1a1f2e;
-  --c-text: #e8e4de;
-  --c-text-muted: #8b8e96;
-  --c-accent: #c9a84c;
-  --c-accent-light: #dfc06a;
-  --c-border: #2a2f3d;
+  --c-bg: #faf6f1;
+  --c-bg-alt: #f0e8df;
+  --c-surface: #e8ddd2;
+  --c-text: #2c2420;
+  --c-text-muted: #7a6e64;
+  --c-accent: #b5636a;
+  --c-accent-light: #d4838a;
+  --c-border: #d4c8bb;
 
   --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -170,7 +170,7 @@ h1, h2, h3, h4, h5, h6 {
   animation: grain 8s steps(10) infinite;
   pointer-events: none;
   z-index: 100;
-  opacity: 0.3;
+  opacity: 0.15;
 }
 
 /* ═══════════════════════════════════════════════════════════

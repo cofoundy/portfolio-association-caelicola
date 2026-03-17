@@ -1,23 +1,34 @@
 ---
 import { siteConfig } from "../config";
-const { project } = siteConfig;
+const { project, festival, projectsIntro } = siteConfig;
 ---
 
 <section id="project" class="px-6 py-24 md:py-32" style="background: var(--c-bg);">
   <div class="max-w-4xl mx-auto">
 
+    <!-- Projects intro -->
+    <div class="reveal text-center mb-16">
+      <p class="text-lg md:text-xl italic" style="font-family: 'Cormorant Garamond', serif; color: var(--c-text); line-height: 1.8;">
+        <span class="lang-fr">{projectsIntro.fr}</span>
+        <span class="lang-es">{projectsIntro.es}</span>
+      </p>
+    </div>
+
+    <!-- ═══ DANZA INFINITA ═══ -->
+
     <!-- Section label -->
     <div class="reveal text-center mb-6">
       <p class="text-xs tracking-[0.3em] uppercase" style="color: var(--c-accent);">
-        <span class="lang-fr">Projet actuel</span>
-        <span class="lang-es">Proyecto actual</span>
+        <span class="lang-fr">Projet</span>
+        <span class="lang-es">Proyecto</span>
       </p>
     </div>
 
     <!-- Film title -->
     <div class="reveal stagger-1 text-center mb-12">
       <h2 class="text-3xl sm:text-4xl md:text-6xl tracking-[0.15em] uppercase" style="font-family: 'Cormorant Garamond', serif; color: var(--c-text); font-weight: 300;">
-        {project.title}
+        <span class="lang-fr">{project.titleFr}</span>
+        <span class="lang-es">{project.title}</span>
       </h2>
       <p class="mt-3 text-sm tracking-[0.1em]" style="color: var(--c-text-muted);">
         <span class="lang-fr">{project.type.fr}</span>
@@ -25,34 +36,48 @@ const { project } = siteConfig;
       </p>
     </div>
 
-    <!-- Cinematic frame (letterbox) -->
-    <div class="reveal-scale stagger-2 letterbox relative mx-auto mb-16 overflow-hidden rounded" style="aspect-ratio: 21/9; background: var(--c-surface);">
-      <!-- Placeholder visual — abstract cinematic gradient -->
-      <div class="absolute inset-0 flex items-center justify-center" style="background: linear-gradient(135deg, #0a0d14 0%, #1a1f2e 40%, #2a2520 70%, #0a0d14 100%);">
-        <div class="text-center z-10 relative">
-          <p class="text-5xl sm:text-7xl md:text-8xl tracking-[0.2em] opacity-10" style="font-family: 'Cormorant Garamond', serif; color: var(--c-accent);">
-            ∞
-          </p>
-        </div>
-      </div>
+    <!-- Film poster image -->
+    <div class="reveal-scale stagger-2 relative mx-auto mb-16 overflow-hidden rounded" style="aspect-ratio: 16/9;">
+      <img
+        src={`${import.meta.env.BASE_URL}danza-infinita-fr.jpg`}
+        alt="Danse Infinie — Un film de Marcela Cossíos"
+        class="lang-fr w-full h-full object-cover"
+        loading="lazy"
+      />
+      <img
+        src={`${import.meta.env.BASE_URL}danza-infinita-es.jpg`}
+        alt="Danza Infinita — Una película de Marcela Cossíos"
+        class="lang-es w-full h-full object-cover"
+        loading="lazy"
+      />
     </div>
 
-    <!-- Synopsis -->
-    <div class="reveal stagger-3 max-w-2xl mx-auto text-center mb-14">
-      <p class="text-lg md:text-xl leading-relaxed italic" style="font-family: 'Cormorant Garamond', serif; color: var(--c-text); line-height: 1.8;">
-        <span class="lang-fr">{project.synopsis.fr}</span>
-        <span class="lang-es">{project.synopsis.es}</span>
+    <!-- Role description -->
+    <div class="reveal stagger-3 max-w-2xl mx-auto text-center mb-10">
+      <p class="text-base leading-7" style="color: var(--c-text-muted);">
+        <span class="lang-fr">{project.role.fr}</span>
+        <span class="lang-es">{project.role.es}</span>
       </p>
     </div>
 
     <!-- Stats pills -->
     <div class="reveal stagger-4 flex flex-wrap justify-center gap-4 sm:gap-8 mb-14">
       <div class="px-5 py-3 rounded-sm border text-center" style="border-color: var(--c-border); background: var(--c-bg-alt);">
-        <p class="text-2xl md:text-3xl" style="font-family: 'Cormorant Garamond', serif; color: var(--c-accent);">9</p>
-        <p class="text-xs tracking-[0.15em] uppercase mt-1" style="color: var(--c-text-muted);">
-          <span class="lang-fr">ans</span>
-          <span class="lang-es">años</span>
+        <p class="text-xs tracking-[0.15em] uppercase" style="color: var(--c-text-muted);">
+          <span class="lang-fr">Type</span>
+          <span class="lang-es">Tipo</span>
         </p>
+        <p class="text-sm mt-1 tracking-wide" style="color: var(--c-accent);">
+          <span class="lang-fr">{project.type.fr}</span>
+          <span class="lang-es">{project.type.es}</span>
+        </p>
+      </div>
+      <div class="px-5 py-3 rounded-sm border text-center" style="border-color: var(--c-border); background: var(--c-bg-alt);">
+        <p class="text-xs tracking-[0.15em] uppercase" style="color: var(--c-text-muted);">
+          <span class="lang-fr">Réalisatrice</span>
+          <span class="lang-es">Directora</span>
+        </p>
+        <p class="text-sm mt-1 tracking-wide" style="color: var(--c-text);">{project.director}</p>
       </div>
       <div class="px-5 py-3 rounded-sm border text-center" style="border-color: var(--c-border); background: var(--c-bg-alt);">
         <p class="text-xs tracking-[0.15em] uppercase" style="color: var(--c-text-muted);">
@@ -64,21 +89,62 @@ const { project } = siteConfig;
           <span class="lang-es">{project.status.es}</span>
         </p>
       </div>
-      <div class="px-5 py-3 rounded-sm border text-center" style="border-color: var(--c-border); background: var(--c-bg-alt);">
-        <p class="text-xs tracking-[0.15em] uppercase" style="color: var(--c-text-muted);">
-          <span class="lang-fr">Réalisatrice</span>
-          <span class="lang-es">Directora</span>
-        </p>
-        <p class="text-sm mt-1 tracking-wide" style="color: var(--c-text);">{project.director}</p>
-      </div>
     </div>
 
-    <!-- Role description -->
-    <div class="reveal stagger-5 max-w-xl mx-auto text-center">
-      <p class="text-sm leading-7" style="color: var(--c-text-muted);">
-        <span class="lang-fr">{project.role.fr}</span>
-        <span class="lang-es">{project.role.es}</span>
+    <!-- Separator -->
+    <div class="gold-line w-16 mx-auto my-20"></div>
+
+    <!-- ═══ FESTIVAL TRAMA ═══ -->
+
+    <!-- Section label -->
+    <div class="reveal text-center mb-6">
+      <p class="text-xs tracking-[0.3em] uppercase" style="color: var(--c-accent);">
+        <span class="lang-fr">Festival</span>
+        <span class="lang-es">Festival</span>
       </p>
+    </div>
+
+    <!-- Festival title -->
+    <div class="reveal stagger-1 text-center mb-8">
+      <h2 class="text-3xl sm:text-4xl md:text-5xl tracking-[0.1em] uppercase" style="font-family: 'Cormorant Garamond', serif; color: var(--c-text); font-weight: 300;">
+        {festival.title}
+      </h2>
+      <p class="mt-3 text-sm tracking-[0.08em] italic" style="color: var(--c-accent);">
+        <span class="lang-fr">{festival.subtitle.fr}</span>
+        <span class="lang-es">{festival.subtitle.es}</span>
+      </p>
+    </div>
+
+    <!-- Theme badge -->
+    <div class="reveal stagger-2 text-center mb-10">
+      <span class="inline-block px-5 py-2 rounded-full text-xs tracking-[0.15em] uppercase border" style="border-color: var(--c-accent); color: var(--c-accent);">
+        <span class="lang-fr">{festival.theme.fr}</span>
+        <span class="lang-es">{festival.theme.es}</span>
+      </span>
+    </div>
+
+    <!-- Festival description -->
+    <div class="reveal stagger-3 max-w-2xl mx-auto text-center mb-10">
+      <p class="text-sm leading-7" style="color: var(--c-text-muted);">
+        <span class="lang-fr">{festival.description.fr}</span>
+        <span class="lang-es">{festival.description.es}</span>
+      </p>
+    </div>
+
+    <!-- Festival role -->
+    <div class="reveal stagger-4 max-w-2xl mx-auto text-center mb-10">
+      <p class="text-base leading-7 italic" style="color: var(--c-text); font-family: 'Cormorant Garamond', serif;">
+        <span class="lang-fr">{festival.role.fr}</span>
+        <span class="lang-es">{festival.role.es}</span>
+      </p>
+    </div>
+
+    <!-- Festival link -->
+    <div class="reveal stagger-5 text-center">
+      <a href={festival.link} target="_blank" rel="noopener noreferrer" class="inline-block px-6 py-3 text-xs tracking-[0.15em] uppercase border rounded-sm hover:opacity-80 transition-opacity" style="border-color: var(--c-accent); color: var(--c-accent);">
+        <span class="lang-fr">Voir Festival TRAMA →</span>
+        <span class="lang-es">Ver Festival TRAMA →</span>
+      </a>
     </div>
 
   </div>
